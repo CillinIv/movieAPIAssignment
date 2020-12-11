@@ -1,4 +1,9 @@
 .movies {
     padding-top: 10px;
     margin-top: 0px;
+    background-color: '#6E0C01';
+}
+
+div{
+    padding-left:35px;
 }

@@ -1,68 +1,108 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./movieDetails.css";
+import { Button, Icon, Label, Menu, Table } from 'semantic-ui-react';
+import {getSimilar} from '../../api/tmdb-api.js';
+import Movie from '../movieCardSimilar';
+import { Card } from 'semantic-ui-react'
 
 export default ({ movie }) => {
+
+  const [similarMovies, setSimilar] = useState([]);
+
+  function sleep(ms){
+    while(ms < 100){
+      ms++;
+    }
+    reloadMovieCards();
+  }
+
+  console.log(getSimilar(Movie.id));
+  useEffect(() => {
+    getSimilar(movie.id).then(similarMovies => {
+      setSimilar(similarMovies);
+    });
+  }, []);
+  
+  
+  function sleep(ms){
+    while(ms < 100){
+      ms++;
+    }
+    console.log("Reloading...")
+    reloadMovieCards();
+  }
+
+  console.log(similarMovies);
+  const movieCards = similarMovies.map(m => (
+    <Movie key={m.id} movie={m}/>
+  ));
+  
+  function reloadMovieCards(){
+    console.log(movie.id);
+    getSimilar(movie.id).then(similarMovies => {
+      setSimilar(similarMovies);
+    });
+  }
+
   return (
     <>
-      <h4>Overview</h4>
-      <p>{movie.overview}</p>
-      <ul className="list-group list-group-horizontal">
-        <li key="ruh" className="list-group-item list-group-item-dark">
-          Runtime (min.)
-        </li>
-        <li key="rut" className="list-group-item ">
-          {movie.runtime}
-        </li>
-        <li key="rdh" className="list-group-item list-group-item-dark">
-          Release Date
-        </li>
-        <li key="rdv" className="list-group-item ">
-          {movie.release_date}
-        </li>
-      </ul>
-
-      <ul className="list-group list-group-horizontal">
-        <li key="gh" className="list-group-item list-group-item-dark">
-          Genres
-        </li>
-        {movie.genres.map(g => (
+      <Table celled>
+    <Table.Body>
+    <Table.Row>
+        <Table.HeaderCell>Runtine (min.)  <Icon name = 'clock' color = 'grey' /></Table.HeaderCell>
+        <Table.Cell>{movie.runtime}</Table.Cell>
+      </Table.Row>
+    <Table.Row>
+        <Table.HeaderCell>Release Date  <Icon name = 'calendar' color = 'grey' /></Table.HeaderCell>
+        <Table.Cell>{movie.release_date}</Table.Cell>
+      </Table.Row>
+      <Table.Row>
+        <Table.HeaderCell>Overview <Icon name = 'book' color = 'grey' /></Table.HeaderCell>
+        <Table.Cell>{movie.overview}</Table.Cell>
+      </Table.Row>
+      <Table.Row>
+        <Table.HeaderCell>Genres  <Icon name = 'list' color = 'grey' /></Table.HeaderCell>
+        <Table.Cell>{movie.genres.map(g => (
           <li key={g.name} className="list-group-item">
             {g.name}
           </li>
-        ))}
-      </ul>
-      <ul className="list-group list-group-horizontal">
-        <li key="slh" className="list-group-item list-group-item-dark">
-          Spoken Languages
-        </li>
-        {movie.spoken_languages.map(lang => (
+        ))}</Table.Cell>
+      </Table.Row>
+      <Table.Row>
+        <Table.HeaderCell>Spoken Languages <Icon name = 'talk' color = 'grey' /></Table.HeaderCell>
+        <Table.Cell>{movie.spoken_languages.map(lang => (
           <li key={lang.name} className="list-group-item">
             {lang.name}
           </li>
-        ))}
-      </ul>
-      <ul className="list-group list-group-horizontal">
-        <li key="pch" className="list-group-item list-group-item-dark">
-          Production Companies
-        </li>
-        {movie.production_companies.map(pc => (
+        ))}</Table.Cell>
+      </Table.Row>
+      <Table.Row>
+        <Table.HeaderCell>Production Companies <Icon name = 'building' color = 'grey' /></Table.HeaderCell>
+        <Table.Cell>{movie.production_companies.map(pc => (
           <li key={pc.name} className="list-group-item">
             {pc.name}
           </li>
-        ))}
-      </ul>
-
-      <ul className="list-group list-group-horizontal">
-        <li key="pch" className="list-group-item list-group-item-dark">
-          Production Countries
-        </li>
-        {movie.production_countries.map(pc => (
+        ))}</Table.Cell>
+      </Table.Row>
+      <Table.Row>
+        <Table.HeaderCell>Production Countries <Icon name = 'globe' color = 'grey' /></Table.HeaderCell>
+        <Table.Cell>{movie.production_countries.map(pc => (
           <li key={pc.name} className="list-group-item">
             {pc.name}
           </li>
-        ))}
-      </ul>
-
+        ))}</Table.Cell>
+      </Table.Row>
+      
+    </Table.Body>
+  </Table>
+  <br></br>
+  
+  <h2>Similar Movies <Button hidden onclick = {sleep(0)} secondary><Icon name = 'history' color = 'grey' />Refresh Similar Movies</Button></h2>
+  <br></br>
+  <Card.Group >
+    
+  {movieCards} 
+  </Card.Group>
     </>
   );
 };

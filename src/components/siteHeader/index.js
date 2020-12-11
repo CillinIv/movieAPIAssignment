@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "../../globals/fontawesome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./siteHeader.css";
+import 'semantic-ui-css/semantic.min.css';
 
 const SiteHeader = () => {
   return (
@@ -29,17 +30,27 @@ const SiteHeader = () => {
         <ul className="navbar-nav">
           <li className="nav-item">
             <Link className="nav-link text-white" to="/">
-              Home
+            <i class="home icon"></i>Home
             </Link>
           </li>
           <li className="nav-item">
             <Link className="nav-link text-white" to="/movies/upcoming">
-              Upcoming
+            <i class="calendar alternate icon"></i>Up Coming
             </Link>
           </li>
           <li className="nav-item">
             <Link className="nav-link text-white" to="/movies/favorites">
-              Favorites
+            <i class="heart icon"></i>Favorites
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link text-white" to="/movies/trending">
+            <i class="fire icon"></i>Trending
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link text-white" to="/movies/topRated">
+            <i class="bar chart icon"></i>Top Rated
             </Link>
           </li>
         </ul>

@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import {MoviesContext} from "../../contexts/moviesContext";
-import { Button } from 'semantic-ui-react'
+import { Button } from 'semantic-ui-react';
 
 const AddToFavoriteButton = ({ movie }) => {
   const context = useContext(MoviesContext);
@@ -10,7 +10,6 @@ const AddToFavoriteButton = ({ movie }) => {
     context.addToFavorites(movie.id);
   };
   return (
-
     <Button secondary onClick={handleAddToFavorite} type = 'button'>Add to Favorites</Button>
   );
 };

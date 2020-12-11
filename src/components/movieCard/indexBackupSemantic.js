@@ -7,11 +7,13 @@ import {Card, Icon, Image, Segment, Container, Header} from 'semantic-ui-react';
 
 const MovieCard = ({movie, action}) => {
 
+  
+
+
   return (
     <Card>
-      <br></br>
     <Link to={`/movies/${movie.id}`}>
-    <Image rounded 
+    <Image size='75%' rounded 
         className="card-img-tag center "
         alt={movie.title}
         src={

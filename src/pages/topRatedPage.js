@@ -1,17 +1,17 @@
 import React, { useContext } from "react";
 import PageTemplate from '../components/templateMovieListPage'
 import {MoviesContext} from '../contexts/moviesContext'
-import { getUpcomingMovies } from "../api/tmdb-api";
-import AddToFavoritesButton from '../components/buttons/addToFavoritesUpcoming'
+import { getTopRated } from "../api/tmdb-api";
+import AddToFavoritesButton from '../components/buttons/addToFavoritesToprated'
 
 const MovieListPage = () => {
   const context = useContext(MoviesContext);
-  const movies = context.upcoming.filter((m) => {  // New
+  const movies = context.topRated.filter((m) => {  // New
     return !("favorite" in m);
   });
   return (
       <PageTemplate 
-        title='Up Coming'
+        title='Top Rated'
         movies={movies}
         action={(movie) => {
           return <AddToFavoritesButton movie={movie} /> 

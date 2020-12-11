@@ -5,7 +5,7 @@ import "../../globals/fontawesome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {Card, Icon, Image, Segment, Container, Header} from 'semantic-ui-react';
 
-const MovieCard = ({movie, action}) => {
+const MovieCard = ({movie}) => {
 
   return (
     <Card>
@@ -26,11 +26,6 @@ const MovieCard = ({movie, action}) => {
       <Card.Description>
       <Icon name = 'star' />{movie.vote_average}
       </Card.Description>
-    </Card.Content>
-    <Card.Content extra>
-      <a>
-        {action(movie)}
-      </a>
     </Card.Content>
   </Card>
   );

@@ -8,6 +8,10 @@ import FavoriteMoviesPage from './pages/favoritesMoviesPage'       // NEW
 import MovieReviewPage from "./pages/movieReviewPage";
 import SiteHeader from './components/siteHeader'
 import UpcomingPage from './pages/upcomingPage';
+
+import TrendingPage from './pages/trendingPage';
+import TopRatedPage from './pages/topRatedPage';
+
 import MoviesContextProvider from "./contexts/moviesContext";
 import GenresContextProvider from "./contexts/genresContext";
 import AddMovieReviewPage from './pages/addMovieReviewPage'
@@ -22,12 +26,14 @@ const App = () => {
           <MoviesContextProvider>
             <GenresContextProvider>    {/* NEW */}
               <Switch>
+              <Route exact path="/movies/upcoming" component={UpcomingPage} />
+              <Route exact path="/movies/trending" component={TrendingPage} />
+              <Route exact path="/movies/toprated" component={TopRatedPage} />
               <Route exact path="/reviews/form" component={AddMovieReviewPage} />
               <Route path="/reviews/:id" component={MovieReviewPage} />
               <Route exact path="/movies/favorites" component={FavoriteMoviesPage} />
               <Route path="/movies/:id" component={MoviePage} />
               <Route path="/" component={HomePage} />
-              <Route exact path="/movies/upcoming" component={UpcomingPage} />
               <Redirect from="*" to="/" />
               </Switch>
             </GenresContextProvider>    {/* NEW */}
