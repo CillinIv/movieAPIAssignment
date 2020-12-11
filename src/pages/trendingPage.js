@@ -6,8 +6,7 @@ import AddToFavoritesButton from '../components/buttons/addToFavoritesTrending'
 
 const MovieListPage = () => {
   const context = useContext(MoviesContext);
-  const movies = context.trending.filter((m) => {
-    console.log(movies);  // New
+  const movies = context.trending.filter((m) => { // New
     return !("favorite" in m);
   });
   return (

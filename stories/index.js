@@ -144,7 +144,7 @@ storiesOf("Home Page/MovieList", module)
   });
 
 storiesOf("Movie Details Page/MovieDetails", module).add("default", () => (
-  <MovieDetails movie={sample} />
+  <MemoryRouter><MovieDetails movie={sample} /></MemoryRouter>
 ));
 
 storiesOf("Movie Details Page/MovieHeader", module)
@@ -152,3 +152,164 @@ storiesOf("Movie Details Page/MovieHeader", module)
     <MemoryRouter initialEntries={["/"]}>{story()}</MemoryRouter>
   ))
   .add("default", () => <MovieHeader movie={sample} />);
+
+
+//--------------------------------------------Upcoming-----------------------------------------//
+
+  storiesOf("Upcoming Page/MovieCard", module)
+  .addDecorator(story => (
+    <MemoryRouter initialEntries={["/"]}>{story()}</MemoryRouter>
+  ))
+  .add("default", () => (
+    <MovieCard
+      movie={sample}
+      action={movie => <button className="btn w-100 btn-primary">Test</button>}
+    />
+  ))
+  .add("exception", () => {
+    const sampleNoPoster = { ...sample, poster_path: undefined };
+    return (
+      <MovieCard
+        movie={sampleNoPoster}
+        action={movie => (
+          <button className="btn w-100 btn-primary">Test</button>
+        )}
+      />
+    );
+  });
+
+storiesOf("Upcoming Page/FilterControls", module)
+  .addDecorator(story => (
+    <GenresContextProvider>{story()}</GenresContextProvider>
+  ))
+  .add("default", () => (
+    <FilterControls onUserInput={action("button-click")} numMovies={10} />
+  ));
+
+storiesOf("Upcoming Page/Header", module).add("default", () => (
+  <MoviesHeader title="Upcoming Movies" numMovies={10} />
+));
+
+storiesOf("Upcoming Page/MovieList", module)
+  .addDecorator(story => (
+    <MemoryRouter initialEntries={["/"]}>{story()}</MemoryRouter>
+  ))
+  .add("default", () => {
+    const movies = [sample, sample, sample, sample, sample];
+    return (
+      <MovieList 
+      title='Up Coming'
+      movies={movies}
+      action={(movie) => {
+        <button className="btn w-100 btn-primary">Test</button>
+      }}
+    />
+    );
+  });
+
+
+  //----------------------------------------------------------trending--------------------------//
+  storiesOf("Trending Page/MovieCard", module)
+  .addDecorator(story => (
+    <MemoryRouter initialEntries={["/"]}>{story()}</MemoryRouter>
+  ))
+  .add("default", () => (
+    <MovieCard
+      movie={sample}
+      action={movie => <button className="btn w-100 btn-primary">Test</button>}
+    />
+  ))
+  .add("exception", () => {
+    const sampleNoPoster = { ...sample, poster_path: undefined };
+    return (
+      <MovieCard
+        movie={sampleNoPoster}
+        action={movie => (
+          <button className="btn w-100 btn-primary">Test</button>
+        )}
+      />
+    );
+  });
+
+storiesOf("Trending Page/FilterControls", module)
+  .addDecorator(story => (
+    <GenresContextProvider>{story()}</GenresContextProvider>
+  ))
+  .add("default", () => (
+    <FilterControls onUserInput={action("button-click")} numMovies={10} />
+  ));
+
+storiesOf("Trending Page/Header", module).add("default", () => (
+  <MoviesHeader title="Trending Movies" numMovies={10} />
+));
+
+storiesOf("Trending Page/MovieList", module)
+  .addDecorator(story => (
+    <MemoryRouter initialEntries={["/"]}>{story()}</MemoryRouter>
+  ))
+  .add("default", () => {
+    const movies = [sample, sample, sample, sample, sample];
+    return (
+      <MovieList 
+      title='Up Coming'
+      movies={movies}
+      action={(movie) => {
+        <button className="btn w-100 btn-primary">Test</button>
+      }}
+    />
+    );
+  });
+
+
+
+    //----------------------------------------------------------top Rated--------------------------//
+    storiesOf("Top Rated Page/MovieCard", module)
+    .addDecorator(story => (
+      <MemoryRouter initialEntries={["/"]}>{story()}</MemoryRouter>
+    ))
+    .add("default", () => (
+      <MovieCard
+        movie={sample}
+        action={movie => <button className="btn w-100 btn-primary">Test</button>}
+      />
+    ))
+    .add("exception", () => {
+      const sampleNoPoster = { ...sample, poster_path: undefined };
+      return (
+        <MovieCard
+          movie={sampleNoPoster}
+          action={movie => (
+            <button className="btn w-100 btn-primary">Test</button>
+          )}
+        />
+      );
+    });
+  
+  storiesOf("Top Rated Page/FilterControls", module)
+    .addDecorator(story => (
+      <GenresContextProvider>{story()}</GenresContextProvider>
+    ))
+    .add("default", () => (
+      <FilterControls onUserInput={action("button-click")} numMovies={10} />
+    ));
+  
+  storiesOf("Top Rated Page/Header", module).add("default", () => (
+    <MoviesHeader title="Top Rated Movies" numMovies={10} />
+  ));
+  
+  storiesOf("Top Rated Page/MovieList", module)
+    .addDecorator(story => (
+      <MemoryRouter initialEntries={["/"]}>{story()}</MemoryRouter>
+    ))
+    .add("default", () => {
+      const movies = [sample, sample, sample, sample, sample];
+      return (
+        <MovieList 
+        title='Top Rated'
+        movies={movies}
+        action={(movie) => {
+          <button className="btn w-100 btn-primary">Test</button>
+        }}
+      />
+      );
+    });
