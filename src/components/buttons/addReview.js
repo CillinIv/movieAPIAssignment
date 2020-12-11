@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Button } from "semantic-ui-react";
 
 const ReviewButton = ({ movie }) => {
   return (
     <Link
+      className="btn w-100 btn-primary "
       to={{
         pathname: `/reviews/form`,
         state: {
@@ -12,8 +12,7 @@ const ReviewButton = ({ movie }) => {
         }
       }}
     >
-
-      <Button secondary>Write a Review</Button>
+      Write a Review
     </Link>
   );
 };
