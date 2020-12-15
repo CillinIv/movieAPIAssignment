@@ -15,8 +15,7 @@ export default ({ review }) => {
     <Table.Body>
       <Table.Row>
         <Table.Cell>
-          <Header>
-              
+          <Header> 
             <Header.Content>
             {review.author}
             </Header.Content>
