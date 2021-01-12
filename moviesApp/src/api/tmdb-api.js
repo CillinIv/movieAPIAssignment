@@ -1,5 +1,4 @@
 
-
 export const getMovies = () => {
   return fetch(
     '/api/movies',{headers:{
@@ -11,9 +10,11 @@ export const getMovies = () => {
   
   export const getMovie = id => {
     return fetch(
-      `api/movies/${id}`
-    ).then(res => res.json())
-    .then(json => json.results);
+      `/api/movies/${id}`,{headers:{
+        'Authorization':window.localStorage.getItem('token')
+      }
+    }
+    ).then(res => res.json());
   };
   
   export const getGenres = () => {
@@ -27,35 +28,39 @@ export const getMovies = () => {
 
   export const getMovieReviews = id => {
     return fetch(
-      `https://api.themoviedb.org/3/movie/${id}/reviews?api_key=${process.env.REACT_APP_TMDB_KEY}`
-    )
-      .then(res => res.json())
-      .then(json => json.results);
+      `/api/movies/${id}/reviews/`,{headers:{
+        'Authorization':window.localStorage.getItem('token')
+      }
+    }
+    ).then(res => res.json())
   };
 
-  export const getUpcomingMovies = id => {
+  export const getUpcomingMovies = () => {
     return fetch(
-      `https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&page=1`
-    )
-      .then(res => res.json())
-      .then(json => json.results);
+      `/api/movies/upcoming`,{headers:{
+        'Authorization':window.localStorage.getItem('token')
+      }
+    }
+    ).then(res => res.json())
   };
 
-  export const getTrendingMovies = id => {
+  export const getTrendingMovies = () => {
     return fetch(
-      `https://api.themoviedb.org/3/trending/movie/week?api_key=${process.env.REACT_APP_TMDB_KEY}`
-    )
-      .then(res => res.json())
-      .then(json => json.results);
+      `/api/movies/trending`,{headers:{
+        'Authorization':window.localStorage.getItem('token')
+      }
+    }
+    ).then(res => res.json())
   };
 
 
-  export const getTopRated = id => {
+  export const getTopRated = () => {
     return fetch(
-      `https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.REACT_APP_TMDB_KEY}`
-    )
-      .then(res => res.json())
-      .then(json => json.results);
+      `/api/movies/toprated`,{headers:{
+        'Authorization':window.localStorage.getItem('token')
+      }
+    }
+    ).then(res => res.json())
   };
 
   export const getSimilar = id => {
