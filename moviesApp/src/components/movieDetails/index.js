@@ -32,7 +32,8 @@ export default ({ movie }) => {
     reloadMovieCards();
   }
 
-  console.log(similarMovies);
+  //console.log(similarMovies);
+  console.log(movie);
   const movieCards = similarMovies.map(m => (
     <Movie key={m.id} movie={m}/>
   ));
@@ -47,8 +48,8 @@ export default ({ movie }) => {
   return (
     <>
       <Table celled>
-    <Table.Body>
-    <Table.Row>
+      <Table.Body>
+      <Table.Row>
         <Table.HeaderCell>Runtine (min.)  <Icon name = 'clock' color = 'grey' /></Table.HeaderCell>
         <Table.Cell>{movie.runtime}</Table.Cell>
       </Table.Row>
@@ -62,9 +63,10 @@ export default ({ movie }) => {
       </Table.Row>
       <Table.Row>
         <Table.HeaderCell>Genres  <Icon name = 'list' color = 'grey' /></Table.HeaderCell>
-        <Table.Cell>{movie.genres.map(g => (
-          <li key={g.name} className="list-group-item">
-            {g.name}
+        <Table.Cell>{movie.genre_ids.map(g => (
+          <li key={movie.genre_ids} className="list-group-item">
+            {movie.genre_ids}
+            <br></br>
           </li>
         ))}</Table.Cell>
       </Table.Row>
@@ -76,23 +78,7 @@ export default ({ movie }) => {
           </li>
         ))}</Table.Cell>
       </Table.Row>
-      <Table.Row>
-        <Table.HeaderCell>Production Companies <Icon name = 'building' color = 'grey' /></Table.HeaderCell>
-        <Table.Cell>{movie.production_companies.map(pc => (
-          <li key={pc.name} className="list-group-item">
-            {pc.name}
-          </li>
-        ))}</Table.Cell>
-      </Table.Row>
-      <Table.Row>
-        <Table.HeaderCell>Production Countries <Icon name = 'globe' color = 'grey' /></Table.HeaderCell>
-        <Table.Cell>{movie.production_countries.map(pc => (
-          <li key={pc.name} className="list-group-item">
-            {pc.name}
-          </li>
-        ))}</Table.Cell>
-      </Table.Row>
-      
+    
     </Table.Body>
   </Table>
   <br></br>

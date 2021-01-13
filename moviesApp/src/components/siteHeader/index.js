@@ -1,9 +1,18 @@
-import React from "react";
+import React, {useContext} from "react";
 import { Link } from "react-router-dom";
 import "../../globals/fontawesome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./siteHeader.css";
 import 'semantic-ui-css/semantic.min.css';
+import { AuthContext } from '../../contexts/authContext';
+import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
+import {Button} from 'semantic-ui-react';
+
+let signInValue = "Sign In!";
+
+if(useContext.isAuthenticated){
+  signInValue = "Sign Out"
+}
 
 const SiteHeader = () => {
   return (
@@ -13,6 +22,14 @@ const SiteHeader = () => {
           TMDB Client
         </Link>
       </nav>
+
+      
+      <nav className="navbar-brand text-white">
+        <Link className=" text-white" to="/profile">
+          {signInValue}
+        </Link>
+      </nav>
+
       <FontAwesomeIcon
         className="navbar-text text-light"
         icon={["fas", "video"]}

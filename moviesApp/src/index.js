@@ -7,13 +7,19 @@ import { BrowserRouter, Route, Redirect, Switch, Link } from "react-router-dom" 
 import FavoriteMoviesPage from './pages/favoritesMoviesPage'       // NEW
 import MovieReviewPage from "./pages/movieReviewPage";
 import SiteHeader from './components/siteHeader'
+
 import UpcomingPage from './pages/upcomingPage';
+
+import LoginPage from './pages/loginPage';
+import SignUpPage from './pages/signUpPage';
+import ProfilePage from './pages/profilePage';
 
 import TrendingPage from './pages/trendingPage';
 import TopRatedPage from './pages/topRatedPage';
 
 import MoviesContextProvider from "./contexts/moviesContext";
 import GenresContextProvider from "./contexts/genresContext";
+import AuthContext from "./contexts/authContext";
 import AddMovieReviewPage from './pages/addMovieReviewPage'
 
 
@@ -23,9 +29,13 @@ const App = () => {
       <div className="jumbotron">
         <SiteHeader /> 
         <div className="container-fluid">
+        <AuthContext>
           <MoviesContextProvider>
             <GenresContextProvider>    {/* NEW */}
               <Switch>
+              <Route exact path="/login" component={LoginPage} />
+              <Route exact path="/signup" component={SignUpPage} />
+              <Route exact path="/profile" component={ProfilePage} />
               <Route exact path="/movies/upcoming" component={UpcomingPage} />
               <Route exact path="/movies/trending" component={TrendingPage} />
               <Route exact path="/movies/toprated" component={TopRatedPage} />
@@ -38,6 +48,7 @@ const App = () => {
               </Switch>
             </GenresContextProvider>    {/* NEW */}
           </MoviesContextProvider>
+          </AuthContext>
         </div>
       </div>
     </BrowserRouter>
