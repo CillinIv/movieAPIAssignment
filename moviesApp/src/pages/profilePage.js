@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
-import { withRouter,Link } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import { AuthContext } from "../contexts/authContext";
-import { Container, Button, Icon, Label, Menu, Input } from 'semantic-ui-react';
+import { Container, Button, Divider,Grid, Form, Icon, Label, Menu, Input, Segment } from 'semantic-ui-react';
 
 const BaseAuthHeader = (props) => {
+
   const context = useContext(AuthContext);
   const { history } = props;
 
@@ -15,17 +16,43 @@ const BaseAuthHeader = (props) => {
     </>
   ) : (
     <>
-      You are not logged in{" "}
 
-      <div class="ui buttons">
+<Segment placeholder>
+    <Grid columns={2} relaxed='very' stackable>
+      <Grid.Column>
+          <Button content='Login' icon = "privacy" size='big' onClick={() => history.push("/login")}/>
+      </Grid.Column>
+
+      <Grid.Column verticalAlign='middle'>
+      <Link to="/signup">
+        <Button content='Sign up' icon='signup' size='big' />
+      </Link>
+      </Grid.Column>
+    </Grid>
+
+    <Divider vertical>Or</Divider>
+  </Segment>
+
+
+
+
+
+    {/* <Container>
+    <h1>You are not logged in</h1>
+    <p>Sign up or log into an account!</p>
+    <Segment basic textAlign='center'>
         <Link to="/login">
-          <Button id="smallButton" inverted color='blue' onClick={() => history.push("/login")} >
+          <Button class = "ui button" onClick={() => history.push("/login")} >
             Login
-            </Button>
-            </Link>
-            <div id="smallDiv" class="or"></div><Link to="/signup">
-          <Button id="smallButton" inverted color='green'>SignUp</Button></Link></div>
-
+          </Button>
+        </Link>
+        
+        <Divider horizontal>Or</Divider>
+        
+            <Link to="/signup">
+          <Button class = "ui button" >SignUp</Button></Link>
+          </Segment>
+        </Container> */}
     </>
   );
 };

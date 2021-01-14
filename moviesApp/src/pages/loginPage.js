@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { Container, Button, Icon, Label, Menu, Input } from 'semantic-ui-react';
 
 const LoginPage = props => {
+  
   const context = useContext(AuthContext)
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");

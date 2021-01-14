@@ -20,6 +20,7 @@ const AuthContextProvider = (props) => {
     if (result.token) {
       setToken(result.token)
       setIsAuthenticated(true);
+      console.log(isAuthenticated);
       setUserName(username);
     }
   };
