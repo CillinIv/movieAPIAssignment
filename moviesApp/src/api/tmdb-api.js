@@ -33,7 +33,7 @@ export const getMovies = () => {
       .then(res => res.json())
       .then(json => json.results);
   };
-  
+   
   export const getUpcomingMovies = () => {
     return fetch(
       `/api/movies/upcoming`,{headers:{

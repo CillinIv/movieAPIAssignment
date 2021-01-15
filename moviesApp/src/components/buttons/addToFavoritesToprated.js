@@ -1,17 +1,27 @@
-import React, { useContext } from "react";
-import {MoviesContext} from "../../contexts/moviesContext";
-import { Button } from 'semantic-ui-react';
+import React, { useState,useContext } from "react";
+import {AuthContext} from "../../contexts/authContext";
+import {Button } from 'semantic-ui-react'
+import {addToFavourites, getMovie} from '../../api/tmdb-api'
+const useAuthContext = () => useContext(AuthContext);
 
 const AddToFavoriteButton = ({ movie }) => {
-  const context = useContext(MoviesContext);
+  const [favorites, setFavorites] = useState([]);
+  const authContext = useAuthContext();
+
 
   const handleAddToFavorite = e => {
     e.preventDefault();
-    context.addToFavoritesToprated(movie.id);
+    addToFavourites(authContext.userName,parseInt(movie.id));
+    console.log("added movie :",movie.id," to user ",authContext.userName)
   };
+
   return (
-    <Button secondary onClick={handleAddToFavorite} type = 'button'>Add to Favorites</Button>
+    <Button inverted color='blue'
+      onClick={handleAddToFavorite}
+    >
+      Add to Favorites
+    </Button>
   );
-};
+} 
 
 export default AddToFavoriteButton;
