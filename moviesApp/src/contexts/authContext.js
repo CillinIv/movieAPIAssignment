@@ -1,5 +1,5 @@
 import React, { useState, createContext } from "react";
-import { login, signup } from "../api/tmdb-api";
+import { login, signup,getFavourites } from "../api/tmdb-api";
 
 export const AuthContext = createContext(null);
 
@@ -36,6 +36,12 @@ const AuthContextProvider = (props) => {
     setTimeout(() => setIsAuthenticated(false), 100);
   }
 
+  const getFavouriteMovies = async (username) => {
+    const result = await getFavourites(username);
+    return result
+  
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -43,6 +49,7 @@ const AuthContextProvider = (props) => {
         authenticate,
         register,
         signout,
+        getFavouriteMovies,
         userName
       }}
     >

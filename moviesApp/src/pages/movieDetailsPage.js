@@ -5,7 +5,7 @@ import PageTemplate from "../components/templateMoviePage";
 import MovieReviews from "../components/movieReviews";
 import useMovie from "../hooks/useMovie";
 import { AuthContext } from '../contexts/authContext';
-
+import { Container, Button, Divider,Grid, Form, Icon, Label, Menu, Input, Segment } from 'semantic-ui-react';
 
 const MoviePage = props => {
   const { id } = props.match.params;
